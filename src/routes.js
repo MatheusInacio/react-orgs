@@ -1,3 +1,4 @@
+import { UsuarioProvider } from "common/context/Usuario";
 import Carrinho from "pages/Carrinho";
 import Feira from "pages/Feira";
 import Login from "pages/Login";
@@ -16,12 +17,14 @@ export default function Router() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path="/">
-          <Login nome={nome} setNome={setNome} saldo={saldo} setSaldo={setSaldo} />
-        </Route>
-        <Route path="/feira">
-          <Feira />
-        </Route>
+        <UsuarioProvider>
+          <Route exact path="/">
+            <Login />
+          </Route>
+          <Route path="/feira">
+            <Feira />
+          </Route>
+        </UsuarioProvider>
         <Route path="/carrinho">
           <Carrinho />
         </Route>
