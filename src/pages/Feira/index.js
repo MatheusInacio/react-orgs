@@ -7,6 +7,8 @@ import { UsuarioContext } from "common/context/Usuario";
 
 function Feira() {
   const { nome, saldo } = useContext(UsuarioContext);
+
+  console.log(nome, saldo)
   return (
     <Container>
       <NavBar />

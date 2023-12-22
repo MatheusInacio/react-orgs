@@ -1,5 +1,5 @@
-import { useState, useMemo, useContext} from "react";
-import { Button, Snackbar, InputLabel, NativeSelect, MenuItem, Select } from "@mui/material";
+import { useState, useMemo, useContext } from "react";
+import { Button, Snackbar, InputLabel, FormControl, MenuItem, Select } from "@mui/material";
 import MuiAlert from "@mui/lab/Alert";
 import {
   Container,
@@ -31,18 +31,20 @@ function Carrinho() {
         <Produto {...produto} key={produto.id} />
       ))}
       <PagamentoContainer>
-        <InputLabel shrink> Forma de Pagamento </InputLabel>
-        <Select
-
-          value={formaPagamento.id}
-          onChange={(event) => mudarFormaPagamento(event.target.value)}
-        >
-          {tiposPagamento.map((pagamento) => (
-            <MenuItem value={pagamento.id} key={pagamento.id}>
-              {pagamento.nome}
-            </MenuItem>
-          ))}
-        </Select>
+        <FormControl variant="filled" sx={{ m: 1, minWidth: 120 }}>
+          <InputLabel id="label-forma-pagamento"> Forma de Pagamento </InputLabel>
+          <Select
+            labelId="label-forma-pagamento"
+            value={formaPagamento.id}
+            onChange={(event) => mudarFormaPagamento(event.target.value)}
+          >
+            {tiposPagamento.map((pagamento) => (
+              <MenuItem value={pagamento.id} key={pagamento.id}>
+                {pagamento.nome}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
       </PagamentoContainer>
       <TotalContainer>
         <div>

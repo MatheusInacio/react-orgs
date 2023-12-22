@@ -1,13 +1,14 @@
-import { Button, InputAdornment, InputLabel, Input } from "@mui/material";
+import { Button, InputLabel, Input, TextField } from "@mui/material";
 import { Container, Titulo, InputContainer } from "./styles";
 import { useHistory } from "react-router-dom";
 import { UsuarioContext } from "common/context/Usuario";
-import { useContext } from "react";
+import { useContext } from 'react';
+import InputCurrency from "components/InputCurrency";
 
 function Login() {
   const history = useHistory();
   const { nome, setNome, saldo, setSaldo } = useContext(UsuarioContext);
-  
+
   return (
     <Container>
       <Titulo>Insira o seu nome</Titulo>
@@ -21,13 +22,15 @@ function Login() {
         />
       </InputContainer>
       <InputContainer>
-        <InputLabel shrink>Saldo</InputLabel>
-        <Input
-          type="number"
+        <InputCurrency
           value={saldo}
-          onChange={(evento) => setSaldo(evento.target.value)}
-          startAdornment={<InputAdornment position="start">R$</InputAdornment>}
-        />
+          label="Saldo"
+          handlerChange={(event) => {
+              console.log(event.target.value);
+              setSaldo(event.target.value);
+            }
+          }
+        ></InputCurrency>
       </InputContainer>
       <Button
         variant="contained"
